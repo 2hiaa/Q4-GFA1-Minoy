@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign - Up Sheet </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<form id ="SIGNFORM">
+
+    <fieldset> 
+    <legend> 𝙃𝙚𝙡𝙡𝙤 <br/>
+        𝙒𝙚 𝙖𝙧𝙚 𝙜𝙡𝙖𝙙 𝙩𝙤 𝙨𝙚𝙚 𝙮𝙤𝙪.  </legend>
+
+    <label for="userName"> 𝗨𝘀𝗲𝗿𝗻𝗮𝗺𝗲 </label>
+    <input type="text" id="uName" name="Username: " onblur="Valid(this)"> <br/>
+
+    <label for="Preferred Name"> 𝗣𝗿𝗲𝗳𝗲𝗿𝗿𝗲𝗱 𝗡𝗮𝗺𝗲 </label>
+    <input type="text" id="pName" name="Preferred Name:" onblur="Valid(this)">  <br/>
+    
+    <label for="Email"> 𝗘𝗺𝗮𝗶𝗹 </label> 
+    <input type = "Email" id="EWord" name="Email Adress: " onblur="Valid(this)"> <br/>
+    
+    <label for="password"> 𝗣𝗮𝘀𝘀𝘄𝗼𝗿𝗱 </label>
+    <input type = "password" id="pWord" name="Password " onblur="Valid(this)"> <br/>
+    
+    <label for="age">𝗘𝗻𝘁𝗲𝗿 𝘆𝗼𝘂𝗿 𝗮𝗴𝗲:</label>
+    <input type="number" id="age" name="Age:" min="1" max="99" onblur="Valid(this)"> <br/>
+
+    <label for ="Gender"> 𝙎𝙚𝙡𝙚𝙘𝙩 𝙮𝙤𝙪𝙧 𝙥𝙧𝙚𝙛𝙚𝙧𝙧𝙚𝙙 𝙩𝙮𝙥𝙚 𝙤𝙛 𝙜𝙚𝙣𝙙𝙚𝙧: </label>  
+    <select name ="Gen" id = "er" onblur="validateInput(this)" onfocus="clearBorder(this)"> <br/>
+
+        <option value = "Blank">  </option>
+        <option value = "Woman"> Female </option>
+        <option value = "Man"> Male </option>
+        <option value = "None"> Prefer not to say </option>
+
+    </select>
+
+    <br/>
+    <input type = "reset" value = "Reset" onclick="resetForm()"> 
+    <input type = "submit" value = "Submit form" > 
+
+    </fieldset>
+
+    <div id="output" class="output-container">
+    </div>
+
+    <script>
+
+function Valid(element) {
+  if (element.value === "") {
+    element.style.border = "1px solid red";
+  } else {
+    element.style.border = "1px solid green";
+  }
+}
+
+function resetForm() {
+  document.getElementById("output").innerHTML = ""; // Clear output
+}
+
+document.getElementById("SIGNFORM").addEventListener("submit", function(event) {
+  event.preventDefault();
+  
+  var formData = new FormData(event.target);
+  var outputDiv = document.getElementById("output");
+  outputDiv.innerHTML = "<h2>Submitted Information:</h2>";
+  
+  for (var pair of formData.entries()) {
+    outputDiv.innerHTML += "<p><strong>" + pair[0] + ":</strong> " + pair[1] + "</p>";
+  }
+});
+
+
+    </script>
+    
+</body>
+</html>
